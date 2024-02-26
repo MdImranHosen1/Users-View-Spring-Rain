@@ -18,13 +18,13 @@ html {
     display: flex;
     justify-content: space-between;
     width:100%;
-    height: 50px;
+    height: 52px;
     padding: 0px 50px;
-    background: #d5d5d5;
+    background: #ffffff;
     align-items: center;
-    box-shadow: 0 3px 10px 0 #e7e7e7;
     position: fixed;
     color: rgb(41, 40, 40);
+    border-bottom:solid 0.2px  rgb(154, 154, 154);
 }
 
 #navbar-large-item{
@@ -34,7 +34,7 @@ html {
 #navbar-large-item>div{
     margin-left: 5px;
     cursor: pointer;
-    padding: 4px;
+    padding: 5px;
     border-radius: 5px;
     font-size: small;
     border:solid 0.1px rgb(154, 154, 154);
@@ -45,7 +45,7 @@ html {
     cursor: pointer;
     /* box-shadow: 0 5px 10px 0 #b5b4b4; */
     
-    background: #cccccc;
+    background: #e0e0e0;
     border-radius: 5px;
     color: rgb(0, 0, 0);
     transition:
@@ -64,8 +64,9 @@ html {
     margin: 5px  0px;
 }
 .user-card>div:first-child{
-    max-width: 100px;
+    max-width: 120px;
     padding: 10px;
+   
 }
 .user-card>div>img{
     width: 100%;
@@ -77,6 +78,9 @@ html {
 }
 .user-card>div:last-child{
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 
 }
 .user-card>div:last-child>div{
