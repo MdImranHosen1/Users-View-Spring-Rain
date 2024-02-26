@@ -1,6 +1,6 @@
 self.onmessage=function(event){
     const apiUrl=event.data;
-    console.log(apiUrl)
+    // console.log(apiUrl)
     fetch(apiUrl).then(res=>res.json())
         .then(data=>{
             self.postMessage(data);

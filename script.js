@@ -36,7 +36,7 @@ function fetchDataWorker() {
     // Listen for messages from worker.js
     fetchWorker.onmessage = function (event) {
         const data = event.data.users;
-        console.log("Data from worker:", data);
+        // console.log("Data from worker:", data);
 
         data.forEach(user => {
             
@@ -72,6 +72,48 @@ function fetchDataWithCallback() {
 }
 
 
+// Fetch data using Promise 
+function fetchDataPromise(){
+    return new Promise((resolve,reject)=>{
+        fetch(apiUrl)
+            .then(res=>{
+                if(!res.ok){
+                    throw new Error("Error resoponse in promise");
+                }
+                return res.json();
+            })
+            .then(data=>{
+                resolve(data);
+            })
+            .catch(error=>{
+                reject(error);
+            });
+    });
+};
+function handleDataPromise(data){
+    data = data.users;
+    console.log(data);
+    data.forEach(user => {
+        
+        const card = generateUserCard(user);
+        userCardsContainer.appendChild(card);
+    });
+}
+function fetchDataWithPromise(){
+
+    fetchDataPromise()
+        .then(data=>{
+            handleDataPromise(data);
+        })
+        .catch(error=>{
+            console.error('Error fetching data Promise: ', error);
+        })
+
+}
+
+
+
+
 
 
 
@@ -82,10 +124,10 @@ function fetchData(method) {
             fetchDataWorker();
             break;
         case 'callback':
-            fetchDataCallback(handleDataCallback);
+            fetchDataWithCallback();
             break;
         case 'promise':
-            fetchDataPromise();
+            fetchDataWithPromise();
             break;
         case 'async-await':
             fetchDataAsyncAwait();
