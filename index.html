@@ -7,20 +7,21 @@
     <title>Users</title>
 </head>
 <body>
-    
+    <!-- style="background-color: rgba(126, 126, 126, 0.537);"  -->
     <nav id="navbar-large">
+        
         <div><img width="30%"  src="./images/paws.png" alt=""/></div>
         <div id="navbar-large-item">
-            <div onclick="fetchData('worker')">Worker</div>
-            <div onclick="fetchData('callback')">Call back</div>
-            <div onclick="fetchData('promise')">Promise</div>
-            <div onclick="fetchData('async-await')">Async/await</div>
+            <div id="worker-btn" onclick="fetchData('worker')">Worker</div>
+            <div id="callback-btn" onclick="fetchData('callback')">Call back</div>
+            <div id="promise-btn" onclick="fetchData('promise')">Promise</div>
+            <div id="async-await-btn" onclick="fetchData('async-await')">Async/await</div>
         </div>
     </nav>
 
     <div id="user-cards" style="padding-top: 43px; padding-left: 60px; padding-right: 60px;">
     <div class="user-card">
-        <div> 
+        <!-- <div> 
             <img src="https://robohash.org/Terry.png?set=set4" alt=""/> 
         </div>
         <div>
@@ -30,7 +31,7 @@
             <div>Phone: +63 791 675 8914</div>
             <div>BirthDate: 2000-12-25</div>
 
-        </div>
+        </div> -->
     </div>
     </div>
     <script src="./script.js"></script>

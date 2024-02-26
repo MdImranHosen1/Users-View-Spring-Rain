@@ -52,6 +52,10 @@ html {
     border-radius 0.25s,
     background-color 0.5s;
 }
+
+.active-button{
+    background-color: rgba(130, 250, 134, 0.537);
+}
 /* Navbar style end */
 
 /* User card */
@@ -62,6 +66,7 @@ html {
     border-radius: 5px;
     color: #2f2f2f;
     margin: 5px  0px;
+    border-bottom:solid 0.2px  rgb(154, 154, 154);
 }
 .user-card>div:first-child{
     max-width: 120px;

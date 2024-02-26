@@ -1,5 +1,5 @@
 const apiUrl = "https://dummyjson.com/users";
-const userCardsContainer = document.getElementById('user-cards');
+let userCardsContainer = document.getElementById('user-cards');
 
 function generateUserCard(user) {
     const card = document.createElement('div');
@@ -112,19 +112,41 @@ async function fetchDataWithAsyncAwait(){
 }
 
 
-
+alert("Click any method for view users list")
+let navbarBtn=["worker-btn","callback-btn","promise-btn","async-await-btn"];
 
 function fetchData(method) {
+    
+    userCardsContainer.innerHTML = '';
+
+    for(let i=0;i<navbarBtn.length;i++)
+    {
+        let btn=document.getElementById(navbarBtn[i]);
+        if(btn.classList.contains("active-button"))
+        {
+            btn.classList.remove("active-button");
+        }
+        let activBtn=method+"-btn";
+        if(activBtn===navbarBtn[i])
+        {
+            btn.classList.add("active-button");
+        }
+    }
+
+
     switch (method) {
 
         case 'worker':
             fetchDataWithWorker();
+            
             break;
         case 'callback':
             fetchDataWithCallback();
+          
             break;
         case 'promise':
             fetchDataWithPromise();
+           
             break;
         case 'async-await':
             fetchDataWithAsyncAwait();
