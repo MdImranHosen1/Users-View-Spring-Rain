@@ -24,7 +24,7 @@ function generateUserCard(user) {
 
 // Fetch data using Worker
 let fetchWorker;
-function fetchDataWorker() {
+function fetchDataWithWorker() {
     if (fetchWorker) {
         fetchWorker.terminate();
     }
@@ -112,7 +112,26 @@ function fetchDataWithPromise(){
 }
 
 
-
+// Fetch data using Async-await
+function handleDataAsyncAwait(data){
+    data = data.users;
+    // console.log(data);
+    data.forEach(user => {
+        
+        const card = generateUserCard(user);
+        userCardsContainer.appendChild(card);
+    });
+}
+async function fetchDataWithAsyncAwait(){
+    try {
+        const res=await fetch(apiUrl);
+        const data=await res.json();
+        handleDataAsyncAwait(data);
+        
+    } catch (error) {
+        console.log("🚀 ~ fetchDataWithAsyncAwait ~ error:", error)
+    }
+}
 
 
 
@@ -121,7 +140,7 @@ function fetchData(method) {
     switch (method) {
 
         case 'worker':
-            fetchDataWorker();
+            fetchDataWithWorker();
             break;
         case 'callback':
             fetchDataWithCallback();
@@ -130,7 +149,7 @@ function fetchData(method) {
             fetchDataWithPromise();
             break;
         case 'async-await':
-            fetchDataAsyncAwait();
+            fetchDataWithAsyncAwait();
             break;
 
     }
