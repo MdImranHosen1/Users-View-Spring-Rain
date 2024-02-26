@@ -19,6 +19,17 @@ function generateUserCard(user) {
     return card;
 }
 
+function dataAppendToCard(data)
+{
+    data = data.users;
+    // console.log(data);
+    data.forEach(user => {
+        
+        const card = generateUserCard(user);
+        userCardsContainer.appendChild(card);
+    });
+}
+
 
 
 
@@ -35,14 +46,8 @@ function fetchDataWithWorker() {
 
     // Listen for messages from worker.js
     fetchWorker.onmessage = function (event) {
-        const data = event.data.users;
-        // console.log("Data from worker:", data);
-
-        data.forEach(user => {
-            
-            const card = generateUserCard(user);
-            userCardsContainer.appendChild(card);
-        });
+        const data = event.data;
+        dataAppendToCard(data);
     };
 };
 
@@ -56,19 +61,9 @@ function fetchDataCallback(callback) {
             console.log("Error fetch data in callback method ",error)
         })
 }
-function handleDataCallback(data){
-        data = data.users;
-        // console.log("Data from worker:", data);
-
-        data.forEach(user => {
-            
-            const card = generateUserCard(user);
-            userCardsContainer.appendChild(card);
-        });
-}
 
 function fetchDataWithCallback() {
-    fetchDataCallback(handleDataCallback); 
+    fetchDataCallback(dataAppendToCard); 
 }
 
 
@@ -90,20 +85,12 @@ function fetchDataPromise(){
             });
     });
 };
-function handleDataPromise(data){
-    data = data.users;
-    console.log(data);
-    data.forEach(user => {
-        
-        const card = generateUserCard(user);
-        userCardsContainer.appendChild(card);
-    });
-}
+
 function fetchDataWithPromise(){
 
     fetchDataPromise()
         .then(data=>{
-            handleDataPromise(data);
+            dataAppendToCard(data);
         })
         .catch(error=>{
             console.error('Error fetching data Promise: ', error);
@@ -113,20 +100,11 @@ function fetchDataWithPromise(){
 
 
 // Fetch data using Async-await
-function handleDataAsyncAwait(data){
-    data = data.users;
-    // console.log(data);
-    data.forEach(user => {
-        
-        const card = generateUserCard(user);
-        userCardsContainer.appendChild(card);
-    });
-}
 async function fetchDataWithAsyncAwait(){
     try {
         const res=await fetch(apiUrl);
         const data=await res.json();
-        handleDataAsyncAwait(data);
+        dataAppendToCard(data);
         
     } catch (error) {
         console.log("🚀 ~ fetchDataWithAsyncAwait ~ error:", error)
