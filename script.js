@@ -20,18 +20,6 @@ function generateUserCard(user) {
 }
 
 
-// fetch('https://dummyjson.com/users')
-//     .then(respose=>respose.json())
-//     .then(users=>{
-//         // console.log(users.users)
-//         users.users.forEach(user=>{
-//             const card=generateUserCard(user);
-//             userCardsContainer.appendChild(card);
-//         })
-
-//     }).catch(error=>{
-//         console.log("Error fetching data:",error);
-//     });
 
 
 // Fetch data using Worker
@@ -52,15 +40,37 @@ function fetchDataWorker() {
 
         data.forEach(user => {
             
-            console.log("🚀 ~ fetchDataWorker ~ user:", user)
-            
             const card = generateUserCard(user);
             userCardsContainer.appendChild(card);
         });
     };
+};
 
 
+// Fetch data using callback
+function fetchDataCallback(callback) {
+    fetch(apiUrl)
+        .then(res=>res.json())
+        .then(data=>callback(data))
+        .catch(error=>{
+            console.log("Error fetch data in callback method ",error)
+        })
 }
+function handleDataCallback(data){
+        data = data.users;
+        // console.log("Data from worker:", data);
+
+        data.forEach(user => {
+            
+            const card = generateUserCard(user);
+            userCardsContainer.appendChild(card);
+        });
+}
+
+function fetchDataWithCallback() {
+    fetchDataCallback(handleDataCallback); 
+}
+
 
 
 
@@ -72,7 +82,7 @@ function fetchData(method) {
             fetchDataWorker();
             break;
         case 'callback':
-            fetchDataCallback();
+            fetchDataCallback(handleDataCallback);
             break;
         case 'promise':
             fetchDataPromise();
