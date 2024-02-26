@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Users</title>
-</head>
-<body>
-    <!-- style="background-color: rgba(126, 126, 126, 0.537);"  -->
+  </head>
+
+  <body>
     <nav id="navbar-large">
-        
-        <div><img width="30%"  src="./images/paws.png" alt=""/></div>
-        <div id="navbar-large-item">
-            <div id="worker-btn" onclick="fetchData('worker')">Worker</div>
-            <div id="callback-btn" onclick="fetchData('callback')">Call back</div>
-            <div id="promise-btn" onclick="fetchData('promise')">Promise</div>
-            <div id="async-await-btn" onclick="fetchData('async-await')">Async/await</div>
+      <div><img width="30%" src="./images/paws.png" alt="" /></div>
+      <div id="navbar-large-item">
+        <div id="worker-btn" onclick="fetchData('worker')">Worker</div>
+        <div id="callback-btn" onclick="fetchData('callback')">Call back</div>
+        <div id="promise-btn" onclick="fetchData('promise')">Promise</div>
+        <div id="async-await-btn" onclick="fetchData('async-await')">
+          Async/await
         </div>
+        <div id="list-navbar-mobile">
+          <img id="list-navbar-mobile-img" src="./images/list.png" alt="" />
+        </div>
+      </div>
+    </nav>
+    <div style="padding-top: 43px"></div>
+
+    <nav id="navbar-small" class="hidden">
+      <div id="worker-btn-sm" onclick="fetchData('worker')">Worker</div>
+      <div id="callback-btn-sm" onclick="fetchData('callback')">Call back</div>
+      <div id="promise-btn-sm" onclick="fetchData('promise')">Promise</div>
+      <div id="async-await-btn-sm" onclick="fetchData('async-await')">
+        Async/await
+      </div>
     </nav>
 
-    <div id="user-cards" style="padding-top: 43px; padding-left: 60px; padding-right: 60px;">
-    <div class="user-card">
-        <!-- <div> 
-            <img src="https://robohash.org/Terry.png?set=set4" alt=""/> 
-        </div>
-        <div>
-            <div><h3>Name: Imran</h3></div>
-            <div>University: Capitol University</div>
-            <div>Email: atuny0@sohu.com</div>
-            <div>Phone: +63 791 675 8914</div>
-            <div>BirthDate: 2000-12-25</div>
-
-        </div> -->
-    </div>
+    <div id="user-cards" style="padding-left: 60px; padding-right: 60px">
+      <div class="user-card"></div>
     </div>
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>

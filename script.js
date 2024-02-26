@@ -1,3 +1,5 @@
+"use strict";
+
 const apiUrl = "https://dummyjson.com/users";
 let userCardsContainer = document.getElementById('user-cards');
 
@@ -19,12 +21,11 @@ function generateUserCard(user) {
     return card;
 }
 
-function dataAppendToCard(data)
-{
+function dataAppendToCard(data) {
     data = data.users;
     // console.log(data);
     data.forEach(user => {
-        
+
         const card = generateUserCard(user);
         userCardsContainer.appendChild(card);
     });
@@ -55,44 +56,44 @@ function fetchDataWithWorker() {
 // Fetch data using callback
 function fetchDataCallback(callback) {
     fetch(apiUrl)
-        .then(res=>res.json())
-        .then(data=>callback(data))
-        .catch(error=>{
-            console.log("Error fetch data in callback method ",error)
+        .then(res => res.json())
+        .then(data => callback(data))
+        .catch(error => {
+            console.log("Error fetch data in callback method ", error)
         })
 }
 
 function fetchDataWithCallback() {
-    fetchDataCallback(dataAppendToCard); 
+    fetchDataCallback(dataAppendToCard);
 }
 
 
 // Fetch data using Promise 
-function fetchDataPromise(){
-    return new Promise((resolve,reject)=>{
+function fetchDataPromise() {
+    return new Promise((resolve, reject) => {
         fetch(apiUrl)
-            .then(res=>{
-                if(!res.ok){
+            .then(res => {
+                if (!res.ok) {
                     throw new Error("Error resoponse in promise");
                 }
                 return res.json();
             })
-            .then(data=>{
+            .then(data => {
                 resolve(data);
             })
-            .catch(error=>{
+            .catch(error => {
                 reject(error);
             });
     });
 };
 
-function fetchDataWithPromise(){
+function fetchDataWithPromise() {
 
     fetchDataPromise()
-        .then(data=>{
+        .then(data => {
             dataAppendToCard(data);
         })
-        .catch(error=>{
+        .catch(error => {
             console.error('Error fetching data Promise: ', error);
         })
 
@@ -100,53 +101,61 @@ function fetchDataWithPromise(){
 
 
 // Fetch data using Async-await
-async function fetchDataWithAsyncAwait(){
+async function fetchDataWithAsyncAwait() {
     try {
-        const res=await fetch(apiUrl);
-        const data=await res.json();
+        const res = await fetch(apiUrl);
+        const data = await res.json();
         dataAppendToCard(data);
-        
+
     } catch (error) {
         console.log("🚀 ~ fetchDataWithAsyncAwait ~ error:", error)
     }
 }
 
 
-alert("Click any method for view users list")
-let navbarBtn=["worker-btn","callback-btn","promise-btn","async-await-btn"];
+alert("Default worker method is activated");
+let navbarBtn = ["worker-btn", "callback-btn", "promise-btn", "async-await-btn"];
+// Initial start;
+let initalFetch=1;
+if(initalFetch){
+    fetchData("worker");
+    initalFetch=0;
+}
+
 
 function fetchData(method) {
-    
+
     userCardsContainer.innerHTML = '';
 
-    for(let i=0;i<navbarBtn.length;i++)
-    {
-        let btn=document.getElementById(navbarBtn[i]);
-        if(btn.classList.contains("active-button"))
-        {
+    for (let i = 0; i < navbarBtn.length; i++) {
+        let btn = document.getElementById(navbarBtn[i]);
+        let btnSmall = document.getElementById(navbarBtn[i]+"-sm");
+        
             btn.classList.remove("active-button");
-        }
-        let activBtn=method+"-btn";
-        if(activBtn===navbarBtn[i])
-        {
+            btnSmall.classList.remove("active-button");
+        
+        let activBtn = method + "-btn";
+        let activBtnSmall=activBtn+"-sm";
+        if (activBtn === navbarBtn[i]) {
             btn.classList.add("active-button");
         }
+        if (activBtnSmall === navbarBtn[i]+"-sm") {
+            btnSmall.classList.add("active-button");
+        }
     }
-
-
     switch (method) {
 
         case 'worker':
             fetchDataWithWorker();
-            
+
             break;
         case 'callback':
             fetchDataWithCallback();
-          
+
             break;
         case 'promise':
             fetchDataWithPromise();
-           
+
             break;
         case 'async-await':
             fetchDataWithAsyncAwait();
@@ -154,3 +163,53 @@ function fetchData(method) {
 
     }
 }
+
+// make resoponsive for mobile
+// Handle display size with navbar opations
+function handleResize() {
+    var width = window.innerWidth;
+
+    
+    if (width < 600) {
+        for (let i = 0; i < navbarBtn.length; i++) {
+            let btn = document.getElementById(navbarBtn[i]);
+            btn.classList.add("hidden");
+        }
+        let btn = document.getElementById("list-navbar-mobile");
+        btn.classList.remove("hidden");
+
+
+        let btnClick = document.getElementById("list-navbar-mobile");
+
+        let smallNavbar = document.getElementById("navbar-small");
+        btnClick.onclick = function () {
+            smallNavbar.classList.toggle("hidden");
+            const imgListSmlNavbar = document.getElementById("list-navbar-mobile-img");
+         
+            if (smallNavbar.classList.contains("hidden")) {
+                imgListSmlNavbar.src = "./images/list.png";
+            }
+            else {
+                imgListSmlNavbar.src = "./images/close.png";
+            }
+        };
+
+
+
+    }
+    else {
+        for (let i = 0; i < navbarBtn.length; i++) {
+            let btn = document.getElementById(navbarBtn[i]);
+            btn.classList.remove("hidden");
+        }
+        let btn = document.getElementById("list-navbar-mobile");
+        btn.classList.add("hidden");
+
+        let smallNavbar = document.getElementById("navbar-small");
+        smallNavbar.classList.add("hidden");
+    }
+}
+
+document.addEventListener('DOMContentLoaded', handleResize);
+window.addEventListener('resize', handleResize);
+

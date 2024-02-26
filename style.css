@@ -11,6 +11,10 @@ html {
     scroll-behavior: smooth;
 }
 
+.hidden {
+    display: none;
+}
+
 
 /* Navbar style */
 
@@ -53,8 +57,53 @@ html {
     background-color 0.5s;
 }
 
+#navbar-large-item>div:last-child{
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    border: 0;
+} 
+
+#navbar-large-item>div:last-child>img{
+    padding: 0;
+    margin: 0;
+    width: 24px;
+    
+    
+}
+
 .active-button{
     background-color: rgba(130, 250, 134, 0.537);
+}
+/* Navbar small */
+#navbar-small{
+    padding: 10px;
+    position: fixed;
+    right: 50px;
+    top: 60px;
+    background: rgb(218, 218, 218);
+    min-width: 150px;
+    min-height: 150px;
+    border-radius: 10px;
+    border-bottom:solid 0.2px  rgb(154, 154, 154);
+    color: rgb(45, 45, 45);
+    
+    
+}
+#navbar-small>div{
+    padding: 20px 20px;
+    
+}
+#navbar-small>div:hover{
+    cursor: pointer;
+    /* box-shadow: 0 5px 10px 0 #b5b4b4; */
+    
+    background: #e0e0e0;
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    transition:
+    border-radius 0.25s,
+    background-color 0.5s;
 }
 /* Navbar style end */
 
@@ -86,9 +135,10 @@ html {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    
 
 }
-.user-card>div:last-child>div{
-    margin: 2px 5px;
-}
+
+
+
 
