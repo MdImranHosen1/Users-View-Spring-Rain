@@ -12,7 +12,7 @@ function generateUserCard(user) {
     </div>
     <div>
         <div><h3>Name: ${user.firstName + " " + user.lastName} </h3></div>
-        <div>University: ${user.university} </div>
+        <div>BloodGroup: ${user.bloodGroup} </div>
         <div>Email: ${user.email} </div>
         <div>Phone: ${user.phone} </div>
         <div>Brith Date: ${user.birthDate} </div>
@@ -108,12 +108,12 @@ async function fetchDataWithAsyncAwait() {
         dataAppendToCard(data);
 
     } catch (error) {
-        console.log("🚀 ~ fetchDataWithAsyncAwait ~ error:", error)
+        console.log("fetchDataWithAsyncAwait ~ error:", error)
     }
 }
 
 
-alert("Default worker method is activated");
+// alert("Default worker method is activated");
 let navbarBtn = ["worker-btn", "callback-btn", "promise-btn", "async-await-btn"];
 // Initial start;
 let initalFetch=1;
@@ -168,7 +168,7 @@ function fetchData(method) {
 // Handle display size with navbar opations
 function handleResize() {
     var width = window.innerWidth;
-
+    console.log(width)
     
     if (width < 600) {
         for (let i = 0; i < navbarBtn.length; i++) {
