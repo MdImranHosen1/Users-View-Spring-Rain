@@ -164,6 +164,7 @@ function fetchData(method) {
     }
 }
 
+
 // make resoponsive for mobile
 // Handle display size with navbar opations
 function handleResize() {
