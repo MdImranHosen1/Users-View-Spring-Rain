@@ -3,13 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+    </style>
+
     <link rel="stylesheet" href="style.css" />
     <title>Users</title>
   </head>
 
   <body>
     <nav id="navbar-large">
-      <div><img width="30%" src="./images/paws.png" alt="" /></div>
+      <div>
+        <a href="/index.html">
+          <img width="30%" src="./images/paws.png" alt="Paws" />
+          
+        </a>
+      </div>
       <div id="navbar-large-item">
         <div id="worker-btn" onclick="fetchData('worker')">Worker</div>
         <div id="callback-btn" onclick="fetchData('callback')">Call back</div>
